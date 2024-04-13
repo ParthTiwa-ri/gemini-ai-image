@@ -1,0 +1,36 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  text-align: center;
+}
+
+input[type="file"] {
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.uploaded-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.generated-text {
+  margin-top: 20px;
+}
+
+.loading {
+  text-align: center;
+}

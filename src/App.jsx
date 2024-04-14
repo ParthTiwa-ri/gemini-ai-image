@@ -1,11 +1,20 @@
-import { useState, useRef } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { useRef, useState } from "react";
 
 const API_KEY = "AIzaSyAxvALcPFqQW5iaYtM7X5NhzCg6WBRiTZ8"; // Replace 'YOUR_API_KEY' with your actual API key
 
 const GoogleGenerativeComponent = () => {
-  const prompt =
-    "Give answer in object form  like this {object:  , nature: this contain is the object good , or bad for enviornment , carbonFootprint: ,suggestion: },fist object key is object then second object key is harmfull ,third key is co2 which have anser to carbon footprint per year with proper unit and last key suggestion which have answer to any suggestion(if there is person on image then give human answer only)";
+  const prompt = `Asumme you are a good image recognizer which can recognize image pixel by pixel in detail, Give answer in object form like this:
+  {
+    catagory: "string",
+    nature: "string (this contains whether the object is good or bad for the environment)",
+    carbonFootprint: "string (carbon footprint per year with proper unit)",
+    suggestion: "string (any suggestion)",
+  }
+  Take time and try to recognize the object precisely every time i provide the input.
+  If the type of object is the same type the carbon footprint value should be the same. 
+  If the AI can recognize information about the object's length and width from the data provided, it should calculate the carbon footprint accordingly.
+  Additionally, if a living being is detected in the image, the show carbon footprint invalid return the prompt "Enter data again""`;
 
   const [generatedText, setGeneratedText] = useState("");
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -121,7 +130,7 @@ const GoogleGenerativeComponent = () => {
             />
           ))}
       </div>
-      {generatedText && (
+      {!isLoading && (
         <div>
           <h2>Generated Text:</h2>
           <p>{generatedText}</p>
